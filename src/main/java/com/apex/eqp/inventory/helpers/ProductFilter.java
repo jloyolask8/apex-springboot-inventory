@@ -2,7 +2,6 @@ package com.apex.eqp.inventory.helpers;
 
 import com.apex.eqp.inventory.entities.Product;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -17,10 +16,6 @@ public class ProductFilter {
     }
 
     public List<Product> removeRecalledFrom(Collection<Product> allProduct) {
-        return allProduct.stream().filter(ProductFilter::filterByName).collect(Collectors.toList());
-    }
-
-    private static boolean filterByName(Product product) {
-        return true;
+        return allProduct.stream().filter(p -> !recalledProducts.contains(p.getName())) .collect(Collectors.toList());
     }
 }
